@@ -10,15 +10,15 @@ const useBreakpoint = () => {
       let breakpoint = '';
       const width = window.innerWidth;
       
-      if(width < pixelsToNumber(breakpoints.xs))
+      if(width < (pixelsToNumber(breakpoints.xs) || 0))
         breakpoint = breakpoints.xs
-      else if(width < pixelsToNumber(breakpoints.sm))
+      else if(width < (pixelsToNumber(breakpoints.sm) || 0))
         breakpoint = breakpoints.sm
-      else if(width < pixelsToNumber(breakpoints.md))
+      else if(width < (pixelsToNumber(breakpoints.md) || 0))
         breakpoint = breakpoints.md
-      else if(width < pixelsToNumber(breakpoints.lg))
+      else if(width < (pixelsToNumber(breakpoints.lg) || 0))
         breakpoint = breakpoints.lg
-      else if(width < pixelsToNumber(breakpoints.xl))
+      else if(width < (pixelsToNumber(breakpoints.xl) || 0))
         breakpoint = breakpoints.xl
       else 
         breakpoint = breakpoints.xxl

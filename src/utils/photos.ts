@@ -2,6 +2,8 @@ import { breakpoints } from "../styles/breakpoints";
 import { Photo } from "../types/Photo";
 
 export const splitPhotos = (photos: Photo[], columns: number) => {
+  if(!photos.length) return [[]];
+  
   const list: (Photo[])[] = [];
 
   for(let i = 0; i < columns; i++)
@@ -20,8 +22,8 @@ export const countColumns = (breakpoint: string) => {
     case breakpoints.md:
       return 1;
     case breakpoints.lg:
-    case breakpoints.xl:
       return 2
+    case breakpoints.xl:
     case breakpoints.xxl:
     default:
       return 3;

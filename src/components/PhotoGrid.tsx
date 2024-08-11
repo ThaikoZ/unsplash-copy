@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { device } from "../styles/breakpoints";
 import { countColumns, splitPhotos } from "../utils/photos";
-import { Photo } from "../types/Photo";
+import { Photo as PhotoType } from "../types/Photo";
 import useBreakpoint from "../hooks/useBreakpoint";
+import Photo from "./Photo";
 
 interface Props {
-  photos: Photo[];
+  photos: PhotoType[];
 }
 
 const gridGap = "1.75rem";
@@ -16,7 +17,7 @@ const Grid = styled.div`
   grid-gap: ${gridGap};
   grid-template-columns: repeat(3, 1fr);
 
-  @media ${device.xl} {
+  @media ${device.lg} {
     grid-template-columns: repeat(2, 1fr);
   }
   @media ${device.md} {
@@ -30,11 +31,6 @@ const Column = styled.div`
   gap: ${gridGap};
 `;
 
-const ColumnItem = styled.div`
-  background-color: blue;
-  height: 300px;
-`;
-
 const PhotoGrid = ({ photos }: Props) => {
   const breakpoint = useBreakpoint();
   const columnsAmount = countColumns(breakpoint);
@@ -44,8 +40,8 @@ const PhotoGrid = ({ photos }: Props) => {
     <Grid>
       {columns.map((column, index) => (
         <Column key={index}>
-          {column.map((item, index) => (
-            <ColumnItem key={index}>{item.title}</ColumnItem>
+          {column.map((photo, index) => (
+            <Photo key={index} photo={photo} />
           ))}
         </Column>
       ))}
