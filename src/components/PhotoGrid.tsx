@@ -3,7 +3,7 @@ import { device } from "../styles/breakpoints";
 import { countColumns, splitPhotos } from "../utils/photos";
 import { Photo as PhotoType } from "../types/Photo";
 import useBreakpoint from "../hooks/useBreakpoint";
-import Photo from "./Photo";
+import Photo from "./PhotoCard";
 
 interface Props {
   photos: PhotoType[];
@@ -12,9 +12,9 @@ interface Props {
 const gridGap = "1.75rem";
 
 const Grid = styled.div`
-  width: 100%;
   display: grid;
   grid-gap: ${gridGap};
+  padding: 0 ${gridGap};
   grid-template-columns: repeat(3, 1fr);
 
   @media ${device.lg} {
@@ -22,6 +22,7 @@ const Grid = styled.div`
   }
   @media ${device.md} {
     grid-template-columns: repeat(1, 1fr);
+    padding: 0;
   }
 `;
 
