@@ -3,7 +3,7 @@ import { device } from "../styles/breakpoints";
 import { countColumns, splitPhotos } from "../utils/photos";
 import { Photo as PhotoType } from "../types/Photo";
 import useBreakpoint from "../hooks/useBreakpoint";
-import Photo from "./PhotoCard";
+import PhotoCard from "./PhotoCard";
 
 interface Props {
   photos: PhotoType[];
@@ -43,7 +43,7 @@ const PhotoGrid = ({ photos }: Props) => {
       {columns.map((column, index) => (
         <Column key={index}>
           {column.map((photo, index) => (
-            <Photo key={index} photo={photo} />
+            <PhotoCard key={index} photo={photo} />
           ))}
         </Column>
       ))}
