@@ -103,8 +103,8 @@ const Overlay = () => {
       <AbsoluteContainer right="1rem" top="1rem">
         <UtilsButtons />
       </AbsoluteContainer>
-      <AbsoluteContainer left="1rem" bottom="0.25rem" width="calc(100% - 2rem)">
-        <Flex align="center" justify="">
+      <AbsoluteContainer bottom="0.25rem" width="calc(100% - 1rem)">
+        <Flex align="center">
           <Header limit={25} titleColor="white" />
           <Button>
             <ArrowDownIcon />
