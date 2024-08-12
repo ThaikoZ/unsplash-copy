@@ -21,7 +21,7 @@ const Grid = styled.div`
   @media ${device.lg} {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media ${device.md} {
+  @media ${device.sm} {
     grid-template-columns: repeat(1, 1fr);
     padding: 0;
   }

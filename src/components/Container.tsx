@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { numberToPixels } from "../utils/pixels";
 
 interface Props {
-  maxWidth?: number;
+  maxwidth?: number;
   children: ReactNode;
 }
 
@@ -13,15 +13,15 @@ const OuterContainer = styled.div`
   align-items: center;
 `;
 
-const InnerContainer = styled.div`
-  max-width: ${(props) => numberToPixels(props.maxWidth)};
+const InnerContainer = styled.div<{ maxwidth: number }>`
+  max-width: ${(props) => numberToPixels(props.maxwidth)};
   width: 100%;
 `;
 
-const Container = ({ children, maxWidth = 1300 }: Props) => {
+const Container = ({ children, maxwidth = 1300 }: Props) => {
   return (
     <OuterContainer>
-      <InnerContainer maxWidth={maxWidth}>{children}</InnerContainer>
+      <InnerContainer maxwidth={maxwidth}>{children}</InnerContainer>
     </OuterContainer>
   );
 };

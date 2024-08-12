@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const SmallScreenComponent = styled.div`
   display: none;
 
-  @media ${device.md} {
+  @media ${device.sm} {
     display: block;
   }
 `
@@ -43,7 +43,6 @@ export const StyledOverlay = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  
 
   &:hover ${Blackout} {
     opacity: 1;
@@ -52,7 +51,7 @@ export const StyledOverlay = styled.div`
     opacity: 1;
   }
 
-  @media ${device.md} {
+  @media ${device.sm} {
     display: none;
   }
 `;
@@ -73,6 +72,7 @@ export const StyledHeader = styled.header`
   padding: 0.75rem 0.75rem;
   gap: 0.5rem;
   align-items: center;
+  overflow: hidden;
   height: 2.25rem;
 `;
 
@@ -81,8 +81,10 @@ export const Title = styled.div<{color?: string | undefined}>`
   font-weight: 600;
   line-height: 1rem;
   font-size: 0.95rem;
+  white-space: nowrap;
 `;
 export const Subtitle = styled.div`
+  white-space: nowrap;
   font-weight: 550;
   color: rgba(165, 165, 165, 1);
   font-size: 0.8rem;
@@ -98,7 +100,7 @@ export const Footer = styled.div`
 
 `;
 
-export const Button = styled.button<{ primary?: boolean }>`
+export const Button = styled.button<{ primary?: string }>`
   display: flex;
   align-items: center;
   gap: 5px;

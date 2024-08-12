@@ -22,13 +22,18 @@ import {
   SmallScreenComponent,
 } from "./PhotoCard.styles";
 import { createContext, useContext } from "react";
+import { downloadPhoto } from "../../utils/photos";
 
 interface Props {
   photo: PhotoType;
 }
+interface PhotoCardContext {
+  photo: PhotoType;
+  handleDownload: () => void;
+}
 
 // Context
-const PhotoCardContext = createContext<Props | undefined>(undefined);
+const PhotoCardContext = createContext<PhotoCardContext | undefined>(undefined);
 
 // Hook
 const usePhotoCard = () => {
@@ -40,8 +45,12 @@ const usePhotoCard = () => {
 
 // Main Component
 const PhotoCard = ({ photo }: Props) => {
+  const handleDownload = () => {
+    downloadPhoto(photo.link, photo.title);
+  };
+
   return (
-    <PhotoCardContext.Provider value={{ photo }}>
+    <PhotoCardContext.Provider value={{ photo, handleDownload }}>
       <StyledPhotoCard>
         <SmallScreenComponent>
           <Header limit={40} />
@@ -51,7 +60,7 @@ const PhotoCard = ({ photo }: Props) => {
           <Footer>
             <UtilsButtons />
             <Flex>
-              <Button primary>
+              <Button primary="true" onClick={handleDownload}>
                 <LockOpen2Icon /> Download
               </Button>
             </Flex>
@@ -63,12 +72,13 @@ const PhotoCard = ({ photo }: Props) => {
   );
 };
 
-interface HeaderProps {
+const Header = ({
+  limit,
+  titleColor,
+}: {
   limit: number;
   titleColor?: string;
-}
-
-const Header = ({ limit, titleColor }: HeaderProps) => {
+}) => {
   const { photo } = usePhotoCard();
   const title = shortener(photo.title, limit);
   const subtitle = shortener(photo.subtitle, limit);
@@ -98,6 +108,8 @@ const UtilsButtons = () => {
 };
 
 const Overlay = () => {
+  const { handleDownload } = usePhotoCard();
+
   return (
     <StyledOverlay>
       <AbsoluteContainer right="1rem" top="1rem">
@@ -106,7 +118,7 @@ const Overlay = () => {
       <AbsoluteContainer bottom="0.25rem" width="calc(100% - 1rem)">
         <Flex align="center">
           <Header limit={25} titleColor="white" />
-          <Button>
+          <Button onClick={handleDownload}>
             <ArrowDownIcon />
           </Button>
         </Flex>
