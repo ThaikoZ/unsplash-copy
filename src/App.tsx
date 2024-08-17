@@ -10,9 +10,9 @@ function App() {
   const [photos, setPhotos] = useState<PhotoList>(dataPhotos);
 
   useEffect(() => {
-    getPhotos()
-      .then((res) => setPhotos(res.data))
-      .catch((err) => console.log(err));
+    // getPhotos()
+    //   .then((res) => setPhotos(res.data))
+    //   .catch((err) => console.log(err));
   }, []);
 
   return (
