@@ -46,7 +46,7 @@ const usePhotoCard = () => {
 // Main Component
 const PhotoCard = ({ photo }: Props) => {
   const handleDownload = () => {
-    downloadPhoto(photo.link, photo.title);
+    downloadPhoto(photo.urls.full, photo.user.username);
   };
 
   return (
@@ -55,7 +55,7 @@ const PhotoCard = ({ photo }: Props) => {
         <SmallScreenComponent>
           <Header limit={40} />
         </SmallScreenComponent>
-        <Img src={photo.link} alt={photo.title} />
+        <Img src={photo.urls.regular} alt={photo.alt_description} />
         <SmallScreenComponent>
           <Footer>
             <UtilsButtons />
@@ -80,12 +80,12 @@ const Header = ({
   titleColor?: string;
 }) => {
   const { photo } = usePhotoCard();
-  const title = shortener(photo.title, limit);
-  const subtitle = shortener(photo.subtitle, limit);
+  const title = shortener(photo.user.username, limit);
+  const subtitle = shortener(photo.description || "", limit);
 
   return (
     <StyledHeader>
-      <Avatar src={photo.link} />
+      <Avatar src={photo.user.profile_image.medium} />
       <Flex direction="column" align="start">
         <Title color={titleColor}>{title}</Title>
         {subtitle && <Subtitle>{subtitle}</Subtitle>}
