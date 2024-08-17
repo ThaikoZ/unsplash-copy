@@ -1,8 +1,15 @@
+import styled from "styled-components";
 import Container from "./components/Container";
 import PhotoGrid from "./components/PhotoGrid";
 import photos from "./data/photos.json";
 import { fetchPhotos } from "./services/photoServices";
 import { useQuery } from "@tanstack/react-query";
+
+const CenterText = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+`;
 
 function App() {
   // const {
@@ -14,8 +21,8 @@ function App() {
   //   queryFn: fetchPhotos,
   // });
 
-  // if (isLoading) return <p>Loading photos...</p>;
-  // if (error) return <p>Unidentified error has occured.</p>;
+  // if (isLoading) return <CenterText>Loading photos...</CenterText>;
+  // if (error) return <CenterText>Unidentified error has occured.</CenterText>;
 
   return (
     <Container>
