@@ -1,6 +1,6 @@
-import axios from "./api-client";
+import { apiClient } from "./api-client";
 import { Photo } from "../types/Photo";
 
-export const getPhotos = async () => {
-  return axios.get<Photo[]>("/photos");
+export const fetchPhotos = async () => {
+  return (await apiClient.get<Photo[]>("/photos")).data;
 };

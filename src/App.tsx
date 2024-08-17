@@ -1,23 +1,25 @@
-import { useEffect, useState } from "react";
 import Container from "./components/Container";
 import PhotoGrid from "./components/PhotoGrid";
-import dataPhotos from "./data/photos.json";
-import { PhotoList } from "./types/Photo";
-// import { getPhotos } from "./api/getPhotos";
-import { getPhotos } from "./services/photoServices";
+import photos from "./data/photos.json";
+import { fetchPhotos } from "./services/photoServices";
+import { useQuery } from "@tanstack/react-query";
 
 function App() {
-  const [photos, setPhotos] = useState<PhotoList>(dataPhotos);
+  // const {
+  //   data: photos,
+  //   error,
+  //   isLoading,
+  // } = useQuery({
+  //   queryKey: ["photos"],
+  //   queryFn: fetchPhotos,
+  // });
 
-  useEffect(() => {
-    // getPhotos()
-    //   .then((res) => setPhotos(res.data))
-    //   .catch((err) => console.log(err));
-  }, []);
+  // if (isLoading) return <p>Loading photos...</p>;
+  // if (error) return <p>Unidentified error has occured.</p>;
 
   return (
     <Container>
-      <PhotoGrid photos={photos} />
+      <PhotoGrid photos={photos!} />
     </Container>
   );
 }
