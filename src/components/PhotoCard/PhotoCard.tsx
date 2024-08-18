@@ -21,11 +21,12 @@ import {
   AbsoluteContainer,
   SmallScreenComponent,
 } from "./PhotoCard.styles";
-import { createContext, useContext } from "react";
+import { createContext, Ref, useContext } from "react";
 import { downloadPhoto } from "../../utils/photos";
 
 interface Props {
   photo: PhotoType;
+  innerRef?: Ref<HTMLDivElement>;
 }
 interface PhotoCardContext {
   photo: PhotoType;
@@ -44,14 +45,14 @@ const usePhotoCard = () => {
 };
 
 // Main Component
-const PhotoCard = ({ photo }: Props) => {
+const PhotoCard = ({ photo, innerRef }: Props) => {
   const handleDownload = () => {
     downloadPhoto(photo.urls.full, photo.user.username);
   };
 
   return (
     <PhotoCardContext.Provider value={{ photo, handleDownload }}>
-      <StyledPhotoCard>
+      <StyledPhotoCard ref={innerRef}>
         <SmallScreenComponent>
           <Header limit={40} />
         </SmallScreenComponent>

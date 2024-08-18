@@ -2,9 +2,11 @@ import styled from "styled-components";
 import { countColumns, splitPhotos } from "../../utils/photos";
 import useBreakpoint from "../../hooks/useBreakpoint";
 import PhotoCard from "../PhotoCard";
-import { useQuery } from "@tanstack/react-query";
-import { fetchSearchPhotos } from "../../services/photoServices";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { fetchSearchPhotosInfinite } from "../../services/photoServices";
 import { Column, Grid } from "./PhotoGrid.styles";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
 
 interface Props {
   searchQuery: string;
@@ -18,32 +20,55 @@ const CenterText = styled.div`
 
 const PhotoGrid = ({ searchQuery }: Props) => {
   const breakpoint = useBreakpoint();
+  const { ref, inView } = useInView();
+
   const {
-    data: photos,
-    error,
+    data,
     isLoading,
-  } = useQuery({
+    isError,
+    error,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useInfiniteQuery({
     queryKey: [`photos`, searchQuery],
-    queryFn: () => fetchSearchPhotos(searchQuery),
-    // initialData: { data: { results: photosData } },
+    queryFn: (props) => fetchSearchPhotosInfinite(searchQuery, props),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage = lastPage.data.results.length
+        ? allPages.length + 1
+        : undefined;
+      return nextPage;
+    },
   });
 
-  if (isLoading) return <CenterText>Loading photos...</CenterText>;
-  if (error) return <CenterText>Unidentified error has occurred.</CenterText>;
+  useEffect(() => {
+    // console.log(inView);
+    if (inView && hasNextPage) fetchNextPage();
+  }, [inView, hasNextPage, fetchNextPage]);
 
+  if (isLoading) return <CenterText>Loading photos...</CenterText>;
+  if (isError) return <CenterText>{error.message}</CenterText>;
+
+  const photos = data?.pages.flatMap((photoSet) => photoSet.data.results);
   const columnsAmount = countColumns(breakpoint);
-  const columns = splitPhotos(photos?.data.results, columnsAmount);
+  const columns = splitPhotos(photos, columnsAmount);
 
   return (
-    <Grid>
-      {columns.map((column, index) => (
-        <Column key={index}>
-          {column.map((photo, index) => (
-            <PhotoCard key={index} photo={photo} />
-          ))}
-        </Column>
-      ))}
-    </Grid>
+    <>
+      <Grid>
+        {columns.map((column, col_index) => (
+          <Column key={col_index}>
+            {column.map((photo, index) => {
+              if (column.length === index + 2 && col_index == 0)
+                return <PhotoCard key={index} photo={photo} innerRef={ref} />;
+              return <PhotoCard key={index} photo={photo} />;
+            })}
+          </Column>
+        ))}
+      </Grid>
+      {isFetchingNextPage && <CenterText>Loading photos...</CenterText>}
+    </>
   );
 };
 

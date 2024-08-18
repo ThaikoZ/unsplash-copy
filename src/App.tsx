@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import Container from "./components/Container";
 import PhotoGrid from "./components/PhotoGrid/PhotoGrid";
-import photosData from "./data/photos.json";
+// import photosData from "./data/photos.json";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("luxury");

@@ -1,13 +1,13 @@
 import { styled } from "styled-components";
 import { device } from "../../styles/breakpoints";
 
-const gridGap = "1.75rem";
+const gridGap = "1.5rem";
 
 export const Grid = styled.div`
   display: grid;
   grid-gap: ${gridGap};
-  margin-top: ${gridGap};
-  padding: 0 ${gridGap};
+  margin-top: calc(${gridGap} - 0.25rem);
+  padding: 0 calc(${gridGap} - 0.25rem);
   grid-template-columns: repeat(3, 1fr);
 
   @media ${device.lg} {
