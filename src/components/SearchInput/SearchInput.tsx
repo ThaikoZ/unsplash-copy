@@ -2,10 +2,13 @@ import { Ref } from "react";
 import {
   SearchInputContainer,
   StyledSearchInput,
-  SubmitButton,
+  Button,
+  ResetButton,
 } from "./SearchInput.styles";
 import { IoSearch } from "react-icons/io5";
 import { TbZoomScan } from "react-icons/tb";
+import { useState } from "react";
+import { IoIosClose } from "react-icons/io";
 
 interface Props {
   inputRef: Ref<HTMLInputElement>;
@@ -13,20 +16,40 @@ interface Props {
 }
 
 const SearchInput = ({ inputRef, onSubmit }: Props) => {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.currentTarget.value);
+  };
+
+  const clearInput = () => {
+    setInputValue("");
+    if (inputRef && typeof inputRef !== "function") {
+      inputRef.current?.focus();
+    }
+  };
+
   return (
     <form onSubmit={onSubmit}>
       <SearchInputContainer>
-        <SubmitButton $justify="end" type="submit" $padding="0 0.1rem 0 0.4rem">
+        <Button $justify="end" type="submit" $padding="0 0.1rem 0 0.4rem">
           <IoSearch />
-        </SubmitButton>
+        </Button>
         <StyledSearchInput
           ref={inputRef}
           type="text"
+          value={inputValue}
+          onChange={handleInputChange}
           placeholder="Search photos and illustrations"
         />
-        <SubmitButton $justify="center" $padding="0 0.8rem">
+        {inputValue && (
+          <ResetButton onClick={clearInput}>
+            <IoIosClose size={24} />
+          </ResetButton>
+        )}
+        <Button $justify="center" $padding="0 0.8rem">
           <TbZoomScan size={32} />
-        </SubmitButton>
+        </Button>
       </SearchInputContainer>
     </form>
   );

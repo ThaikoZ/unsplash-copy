@@ -26,6 +26,7 @@ export const StyledSearchInput = styled.input`
 export const SearchInputContainer = styled.div`
   overflow: hidden;
   display: flex;
+  position: relative;
   height: 50px;
   width: 100%;
   background-color: rgb(238, 238, 238);
@@ -44,9 +45,9 @@ export const SearchInputContainer = styled.div`
   }
 `;
 
-export const SubmitButton = styled.button<{
-  $justify: string;
-  $padding: string;
+export const Button = styled.button<{
+  $justify?: string;
+  $padding?: string;
 }>`
   display: flex;
   justify-content: ${(props) => props.$justify};
@@ -63,4 +64,20 @@ export const SubmitButton = styled.button<{
   &:hover {
     color: rgb(17, 17, 17);
   }
+`;
+
+export const ResetButton = styled(Button)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 45px;
+  top: 50%;
+  height: 24px;
+  width: 24px;
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  transform: translateY(-50%);
 `;
