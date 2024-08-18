@@ -1,14 +1,14 @@
 import { breakpoints } from "../styles/breakpoints";
 import { Photo } from "../types/Photo";
 
-// const findMinIndex = (tab: number[]) => {
-//   if (!tab.length) return -1;
+const findMinIndex = (tab: number[]) => {
+  if (!tab.length) return -1;
 
-//   let minIndex = 0;
-//   for (let i = 1; i < tab.length; i++) if (tab[minIndex] > tab[i]) minIndex = i;
+  let minIndex = 0;
+  for (let i = 1; i < tab.length; i++) if (tab[minIndex] > tab[i]) minIndex = i;
 
-//   return minIndex;
-// };
+  return minIndex;
+};
 
 export const splitPhotos = (photos: Photo[] | undefined, columns: number) => {
   if (!photos?.length) return [[]];
@@ -21,15 +21,13 @@ export const splitPhotos = (photos: Photo[] | undefined, columns: number) => {
     columnsHeight.push(0);
   }
 
-  // for (let i = 0; i < photos.length; i++) {
-  //   const index = findMinIndex(columnsHeight);
-  //   const factor = photos[i].height / photos[i].width;
-  //   columnsHeight[index] += photos[i].height * factor;
-  //   list[index].push(photos[i]);
-  //   console.log(columnsHeight);
-  // }
+  for (let i = 0; i < photos.length; i++) {
+    const index = findMinIndex(columnsHeight);
+    columnsHeight[index] += photos[i].height / photos[i].width;
+    list[index].push(photos[i]);
+  }
 
-  photos.forEach((photo, index) => list[index % columns].push(photo));
+  // photos.forEach((photo, index) => list[index % columns].push(photo));
 
   return list;
 };
