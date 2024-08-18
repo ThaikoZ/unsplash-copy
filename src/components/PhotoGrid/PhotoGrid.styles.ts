@@ -6,6 +6,7 @@ const gridGap = "1.5rem";
 export const Grid = styled.div`
   display: grid;
   grid-gap: ${gridGap};
+  padding: 0 calc(${gridGap} - 0.25rem);
   margin-top: calc(${gridGap} - 0.25rem);
   grid-template-columns: repeat(3, 1fr);
 

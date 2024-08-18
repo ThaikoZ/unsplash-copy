@@ -1,7 +1,31 @@
 import React, { useState, useRef } from "react";
-import Container from "./components/Container";
-import PhotoGrid from "./components/PhotoGrid/PhotoGrid";
-// import photosData from "./data/photos.json";
+import Container from "./components/layout/Container";
+import PhotoGrid from "./components/PhotoGrid";
+import Flex from "./components/layout/Flex";
+import { styled } from "styled-components";
+import AdBanner from "./components/AdBanner";
+import SearchInput from "./components/SearchInput";
+
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  width: 100%;
+  height: 275px;
+`;
+
+const Header = styled.h1`
+  font-size: 2.5rem;
+  line-height: 0rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+`;
+
+const Paragraph = styled.p`
+  font-size: 1.15rem;
+  font-weight: medium;
+  margin-bottom: 1rem;
+`;
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("luxury");
@@ -9,18 +33,28 @@ function App() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    if (searchInputRef.current) {
-      const query = searchInputRef.current.value;
+    const input = searchInputRef.current;
+    if (input && input.value) {
+      const query = input.value;
       setSearchQuery(query);
-      searchInputRef.current.value = "";
+      input.value = "";
     }
   };
 
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
-        <input ref={searchInputRef} type="text" placeholder="Search..." />
-      </form>
+      <Flex direction="row" padding="2rem 1.25rem" gap={24}>
+        <Box>
+          <Header>Unsplash</Header>
+          <Paragraph>
+            The internet’s source for visuals. <br />
+            Powered by creators everywhere
+          </Paragraph>
+          <SearchInput inputRef={searchInputRef} onSubmit={handleSubmit} />
+        </Box>
+        <AdBanner />
+      </Flex>
+
       <PhotoGrid searchQuery={searchQuery} />
     </Container>
   );

@@ -6,6 +6,7 @@ interface Properties {
   gap?: number;
   align?: string;
   justify?: string;
+  padding?: string;
 }
 
 interface Props extends Properties {
@@ -18,6 +19,7 @@ const StyledFlex = styled.div<Properties>`
   justify-content: ${(props) => props.justify || "space-between"};
   align-items: ${(props) => props.align || "start"};
   gap: ${(props) => props.gap}px;
+  padding: ${(props) => props.padding};
 `;
 
 const Flex = ({ children, direction = "row", gap, ...props }: Props) => {

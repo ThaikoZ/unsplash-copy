@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
-import { numberToPixels } from "../utils/pixels";
+import { numberToPixels } from "../../utils/pixels";
 
 interface Props {
   maxwidth?: number;
