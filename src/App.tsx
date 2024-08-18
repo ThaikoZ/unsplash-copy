@@ -1,32 +1,27 @@
-import styled from "styled-components";
+import React, { useState, useRef } from "react";
 import Container from "./components/Container";
-import PhotoGrid from "./components/PhotoGrid";
-import photos from "./data/photos.json";
-import { fetchPhotos } from "./services/photoServices";
-import { useQuery } from "@tanstack/react-query";
-
-const CenterText = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-top: 2rem;
-`;
+import PhotoGrid from "./components/PhotoGrid/PhotoGrid";
+import photosData from "./data/photos.json";
 
 function App() {
-  // const {
-  //   data: photos,
-  //   error,
-  //   isLoading,
-  // } = useQuery({
-  //   queryKey: ["photos"],
-  //   queryFn: fetchPhotos,
-  // });
+  const [searchQuery, setSearchQuery] = useState("luxury");
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // if (isLoading) return <CenterText>Loading photos...</CenterText>;
-  // if (error) return <CenterText>Unidentified error has occured.</CenterText>;
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (searchInputRef.current) {
+      const query = searchInputRef.current.value;
+      setSearchQuery(query);
+      searchInputRef.current.value = "";
+    }
+  };
 
   return (
     <Container>
-      <PhotoGrid photos={photos!} />
+      <form onSubmit={handleSubmit}>
+        <input ref={searchInputRef} type="text" placeholder="Search..." />
+      </form>
+      <PhotoGrid searchQuery={searchQuery} />
     </Container>
   );
 }

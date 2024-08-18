@@ -10,10 +10,6 @@ export const apiClient = axios.create({
   },
 });
 
-// refetchOnWindowFocus
-// refetchOnReconnect
-// refetchInterval
-
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
