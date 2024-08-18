@@ -1,7 +1,7 @@
 import { Photo as PhotoType } from "../../types/Photo";
 import { shortener } from "../../utils/string";
 import Avatar from "../Avatar";
-import Flex from "../Flex";
+import Flex from "../layout/Flex";
 import {
   ArrowDownIcon,
   HeartFilledIcon,

@@ -7,7 +7,6 @@ export const Grid = styled.div`
   display: grid;
   grid-gap: ${gridGap};
   margin-top: calc(${gridGap} - 0.25rem);
-  padding: 0 calc(${gridGap} - 0.25rem);
   grid-template-columns: repeat(3, 1fr);
 
   @media ${device.lg} {
