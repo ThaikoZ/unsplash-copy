@@ -22,14 +22,21 @@ This project is a personal recreation of the popular image-sharing platform, Uns
 - **Description:** Implemented data fetching and caching using `react-query`, which enhances the performance and user experience by reducing unnecessary API calls.
 - **Implementation:** Leveraged `react-query` to manage server state, automatically caching the results of API requests. This ensures that previously fetched data is readily available, even when the user navigates back and forth, resulting in faster load times and reduced API usage.
 
+### 4. Unit Testing
+
+- **Description:** Added unit tests to ensure the reliability and correctness of individual components and functions.
+- **Implementation:** Utilized testing frameworks like Vitest and soon React Testing Library to write and run unit tests. Key components and utility functions have been covered by tests to verify that they behave as expected under various conditions. This practice not only helps catch bugs early but also ensures that future changes to the codebase do not introduce regressions.
+
 ## Technologies Used
 
 - **React:** For building the user interface.
 - **TypeScript:** For type-safe JavaScript code.
-- **React Query:** For data fetching and caching.
 - **Styled-components:** For styling the components.
-- **Axios:** For making API requests.
 - **Unsplash API:** As the source of images.
+- **React Query:** For data fetching and caching.
+- **Axios:** For making API requests.
+- **Vitest:** For running unit tests.
+- **React Testing Library:** For testing React components
 
 ## Getting Started
 
