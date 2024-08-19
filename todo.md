@@ -6,7 +6,13 @@
 - Add loading error message
 
 * Create navbar
-* Create navbar
+
+* Add PhotoDetailPage
+
+- Add user profiles
+- Add authenticated Routes
+- Add save Photos in favourites with Zustand
+- Add FavouritePhotosPage
 
 ## Implemented:
 
