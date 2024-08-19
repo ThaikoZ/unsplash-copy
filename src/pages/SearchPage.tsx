@@ -1,9 +1,9 @@
 import Container from "../components/layout/Container";
 import PhotoGrid from "../components/PhotoGrid";
-import { Route } from "../routes/search/$query";
+import { searchRoute } from "../routes";
 
 const SearchPage = () => {
-  const { query } = Route.useParams();
+  const { query } = searchRoute.useParams();
   // TODO: Get href params
 
   return (

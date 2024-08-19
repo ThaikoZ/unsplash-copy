@@ -5,7 +5,7 @@ import Flex from "../components/layout/Flex";
 import { styled } from "styled-components";
 import AdBanner from "../components/AdBanner";
 import SearchInput from "../components/SearchInput";
-import { Route } from "../routes";
+import { routeTree } from "../routes";
 
 const Box = styled.div`
   display: flex;
@@ -29,7 +29,7 @@ const Paragraph = styled.p`
 `;
 
 const HomePage = () => {
-  const navigate = Route.useNavigate();
+  const navigate = routeTree.useNavigate();
   const initialQuery = "luxury apartament";
   const searchInputRef = useRef<HTMLInputElement>(null);
 
