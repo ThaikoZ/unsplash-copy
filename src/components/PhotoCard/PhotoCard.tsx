@@ -56,7 +56,7 @@ const PhotoCard = ({ photo, innerRef }: Props) => {
         <SmallScreenComponent>
           <Header limit={40} />
         </SmallScreenComponent>
-        <Img src={photo.urls.small} alt={photo.alt_description} />
+        <Img src={photo.urls.raw} alt={photo.alt_description} />
         <SmallScreenComponent>
           <Footer>
             <UtilsButtons />
