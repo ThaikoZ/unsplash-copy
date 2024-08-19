@@ -53,7 +53,7 @@ const PhotoGrid = ({ searchQuery }: Props) => {
         {columns.map((column, col_index) => (
           <Column key={col_index}>
             {column.map((photo, index) => {
-              if (column.length === index + 3)
+              if (index >= column.length - 3)
                 return <PhotoCard key={index} photo={photo} innerRef={ref} />;
               return <PhotoCard key={index} photo={photo} />;
             })}
