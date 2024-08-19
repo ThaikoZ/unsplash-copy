@@ -21,23 +21,25 @@ export const fetchPhotos = async (props: InfiniteQueryParams) => {
 };
 
 export const fetchSearchPhotos = async (query: string, page: number = 1) => {
-  return apiClient.get<SearchPhotosAPI>(`/search/photos`, {
+  const request = await apiClient.get<SearchPhotosAPI>(`/search/photos`, {
     params: {
       query,
       page,
       per_page: 10,
     },
   });
+  return request.data;
 };
 
 export const fetchSearchPhotosInfinite = async (
   query: string,
   props: { pageParam: number }
 ) => {
-  return apiClient.get<SearchPhotosAPI>("/search/photos", {
+  const request = await apiClient.get<SearchPhotosAPI>("/search/photos", {
     params: {
       query: query,
       page: props.pageParam,
     },
   });
+  return request.data;
 };

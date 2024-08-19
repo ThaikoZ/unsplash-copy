@@ -15,7 +15,7 @@ const shimmer = `
 
 const Skeleton = styled(StyledPhotoCard)`
   background-color: rgb(245, 245, 245);
-  height: 400px;
+  height: 500px;
   overflow: hidden;
   position: relative;
 

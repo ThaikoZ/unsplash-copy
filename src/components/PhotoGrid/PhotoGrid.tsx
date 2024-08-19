@@ -37,7 +37,7 @@ const PhotoGrid = ({ searchQuery }: Props) => {
     queryFn: (props) => fetchSearchPhotosInfinite(searchQuery, props),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
-      const nextPage = lastPage.data.results.length
+      const nextPage = lastPage.results.length
         ? allPages.length + 1
         : undefined;
       return nextPage;
@@ -51,10 +51,10 @@ const PhotoGrid = ({ searchQuery }: Props) => {
   if (isLoading)
     return (
       <Grid>
-        {loadingFrames.map((column) => (
-          <Column>
-            {column.map(() => (
-              <PhotoCardSkeleton />
+        {loadingFrames.map((column, index) => (
+          <Column key={index}>
+            {column.map((_, index) => (
+              <PhotoCardSkeleton key={index} />
             ))}
           </Column>
         ))}
@@ -62,7 +62,7 @@ const PhotoGrid = ({ searchQuery }: Props) => {
     );
   if (isError) return <CenterText>{error.message}</CenterText>;
 
-  const photos = data?.pages.flatMap((photoSet) => photoSet.data.results);
+  const photos = data?.pages.flatMap((photoSet) => photoSet.results);
   const columnsAmount = countColumns(breakpoint);
   const columns = splitPhotos(photos, columnsAmount);
 
