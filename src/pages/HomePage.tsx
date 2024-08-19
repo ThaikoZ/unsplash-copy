@@ -5,6 +5,7 @@ import Flex from "../components/layout/Flex";
 import { styled } from "styled-components";
 import AdBanner from "../components/AdBanner";
 import SearchInput from "../components/SearchInput";
+import { Route } from "../routes";
 
 const Box = styled.div`
   display: flex;
@@ -28,7 +29,8 @@ const Paragraph = styled.p`
 `;
 
 const HomePage = () => {
-  const initialQuery = "porshe";
+  const navigate = Route.useNavigate();
+  const initialQuery = "luxury apartament";
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -36,8 +38,7 @@ const HomePage = () => {
     const input = searchInputRef.current;
     if (input && input.value) {
       const query = input.value;
-      console.log(query);
-      // TODO: Redirect to another page ../../query
+      navigate({ to: "/search/$query", params: { query } });
     }
   };
 

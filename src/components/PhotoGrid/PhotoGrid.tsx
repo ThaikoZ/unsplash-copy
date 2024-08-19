@@ -1,22 +1,16 @@
-import styled from "styled-components";
-import { countColumns, splitPhotos } from "../../utils/photos";
-import useBreakpoint from "../../hooks/useBreakpoint";
-import PhotoCard from "../PhotoCard";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { fetchSearchPhotosInfinite } from "../../services/photoServices";
-import { Column, Grid } from "./PhotoGrid.styles";
-import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import useBreakpoint from "../../hooks/useBreakpoint";
+import { fetchSearchPhotosInfinite } from "../../services/photoServices";
+import { countColumns, splitPhotos } from "../../utils/photos";
+import CenterText from "../CenterText";
+import PhotoCard from "../PhotoCard";
+import { Column, Grid } from "./PhotoGrid.styles";
 
 interface Props {
   searchQuery: string;
 }
-
-const CenterText = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-top: 2rem;
-`;
 
 const PhotoGrid = ({ searchQuery }: Props) => {
   const breakpoint = useBreakpoint();

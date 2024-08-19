@@ -7,8 +7,17 @@ interface SearchPhotosAPI {
   results: Photo[];
 }
 
-export const fetchPhotos = async () => {
-  return apiClient.get<Photo[]>("/photos");
+interface InfiniteQueryParams {
+  pageParam?: number;
+}
+
+export const fetchPhotos = async (props: InfiniteQueryParams) => {
+  const request = await apiClient.get<Photo[]>("/photos", {
+    params: {
+      page: props.pageParam,
+    },
+  });
+  return request.data;
 };
 
 export const fetchSearchPhotos = async (query: string, page: number = 1) => {
@@ -25,7 +34,6 @@ export const fetchSearchPhotosInfinite = async (
   query: string,
   props: { pageParam: number }
 ) => {
-  console.log(props);
   return apiClient.get<SearchPhotosAPI>("/search/photos", {
     params: {
       query: query,
