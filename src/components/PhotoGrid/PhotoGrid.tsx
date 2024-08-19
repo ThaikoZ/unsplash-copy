@@ -8,6 +8,7 @@ import CenterText from "../CenterText";
 import PhotoCard from "../PhotoCard";
 import { Column, Grid } from "./PhotoGrid.styles";
 import PhotoCardSkeleton from "../PhotoCard/PhotoCardSkeleton";
+import Spinner from "../Spinner";
 
 interface Props {
   searchQuery: string;
@@ -78,7 +79,11 @@ const PhotoGrid = ({ searchQuery }: Props) => {
           </Column>
         ))}
       </Grid>
-      {isFetchingNextPage && <CenterText>Loading photos...</CenterText>}
+      {isFetchingNextPage && (
+        <CenterText>
+          <Spinner />
+        </CenterText>
+      )}
     </>
   );
 };
