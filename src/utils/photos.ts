@@ -27,7 +27,20 @@ export const splitPhotos = (photos: Photo[] | undefined, columns: number) => {
     list[index].push(photos[i]);
   }
 
-  // photos.forEach((photo, index) => list[index % columns].push(photo));
+  return list;
+};
+export const splitToColumns = (numbers: number[], columns: number) => {
+  if (!numbers?.length) return [[]];
+
+  const columnsHeight: number[] = [];
+  const list: number[][] = [];
+
+  for (let i = 0; i < columns; i++) {
+    list.push([]);
+    columnsHeight.push(0);
+  }
+
+  numbers.forEach((number, index) => list[index % columns].push(number));
 
   return list;
 };

@@ -71,8 +71,8 @@ const SearchPage = () => {
     <Container>
       <Header>{query}</Header>
       <TagContainer>
-        {tags.map((tag) => (
-          <StyledLink to="/search/$query" params={{ query: tag }}>
+        {tags.map((tag, index) => (
+          <StyledLink key={index} to="/search/$query" params={{ query: tag }}>
             {tag}
           </StyledLink>
         ))}

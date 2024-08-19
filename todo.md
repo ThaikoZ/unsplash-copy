@@ -1,18 +1,20 @@
 ## To implement:
 
-- Add Categories vertical scroll to SearchPage
+- Add PhotoDetailPage
 
-* Create navbar
+* Load tags from query
+* Add content to ad banner
 
-* Add PhotoDetailPage
+- Create navbar
 
-- Add user profiles
-- Add authenticated Routes
-- Add save Photos in favourites with Zustand
-- Add FavouritePhotosPage
+* Add user profiles
+* Add authenticated Routes
+* Add save Photos in favourites with Zustand
+* Add FavouritePhotosPage
 
 ## Implemented:
 
+- Add Categories vertical scroll to SearchPage
 - Add loading error message
 - Add loading photos spinner
 - Add loading skeletons to photos
