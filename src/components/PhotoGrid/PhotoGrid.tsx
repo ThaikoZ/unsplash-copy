@@ -7,10 +7,17 @@ import { countColumns, splitPhotos } from "../../utils/photos";
 import CenterText from "../CenterText";
 import PhotoCard from "../PhotoCard";
 import { Column, Grid } from "./PhotoGrid.styles";
+import PhotoCardSkeleton from "../PhotoCard/PhotoCardSkeleton";
 
 interface Props {
   searchQuery: string;
 }
+
+const loadingFrames = [
+  [1, 2],
+  [3, 4],
+  [5, 6],
+];
 
 const PhotoGrid = ({ searchQuery }: Props) => {
   const breakpoint = useBreakpoint();
@@ -40,7 +47,18 @@ const PhotoGrid = ({ searchQuery }: Props) => {
     if (inView && hasNextPage) fetchNextPage();
   }, [inView, hasNextPage, fetchNextPage]);
 
-  if (isLoading) return <CenterText>Loading photos...</CenterText>;
+  if (isLoading)
+    return (
+      <Grid>
+        {loadingFrames.map((column) => (
+          <Column>
+            {column.map(() => (
+              <PhotoCardSkeleton />
+            ))}
+          </Column>
+        ))}
+      </Grid>
+    );
   if (isError) return <CenterText>{error.message}</CenterText>;
 
   const photos = data?.pages.flatMap((photoSet) => photoSet.data.results);
