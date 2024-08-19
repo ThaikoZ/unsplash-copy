@@ -28,7 +28,7 @@ export const fetchSearchPhotosInfinite = async (
   console.log(props);
   return apiClient.get<SearchPhotosAPI>("/search/photos", {
     params: {
-      query,
+      query: query,
       page: props.pageParam,
     },
   });

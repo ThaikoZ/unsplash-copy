@@ -43,7 +43,6 @@ const PhotoGrid = ({ searchQuery }: Props) => {
   });
 
   useEffect(() => {
-    // console.log(inView);
     if (inView && hasNextPage) fetchNextPage();
   }, [inView, hasNextPage, fetchNextPage]);
 
